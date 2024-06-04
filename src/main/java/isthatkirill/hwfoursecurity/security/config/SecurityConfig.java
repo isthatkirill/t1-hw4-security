@@ -1,5 +1,6 @@
 package isthatkirill.hwfoursecurity.security.config;
 
+import isthatkirill.hwfoursecurity.security.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
