@@ -2,6 +2,8 @@ package isthatkirill.hwfoursecurity.security.model;
 
 import isthatkirill.hwfoursecurity.model.Role;
 import isthatkirill.hwfoursecurity.model.User;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
  * @author Kirill Emelyanov
  */
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JwtUserFactory {
 
     public static JwtUser create(User user) {

@@ -1,5 +1,7 @@
 package isthatkirill.hwfoursecurity.security.config;
 
+import isthatkirill.hwfoursecurity.security.filter.ExceptionHandlerFilter;
+import isthatkirill.hwfoursecurity.security.filter.JwtTokenFilter;
 import isthatkirill.hwfoursecurity.security.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -51,8 +53,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .anonymous(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .sessionManagement(smc -> smc
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(smc ->
+                        smc.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(ehc ->
                         ehc.authenticationEntryPoint(
                                 (request, response, authException) -> {
