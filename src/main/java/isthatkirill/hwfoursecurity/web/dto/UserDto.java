@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Kirill Emelyanov
