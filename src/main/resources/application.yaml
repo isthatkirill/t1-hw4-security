@@ -1,19 +1,21 @@
 spring:
+
+  config:
+    import: optional:file:.env[.properties]
+
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: "ds"
-    username: "ds"
-    password: "ds"
+    url: jdbc:postgresql://localhost:5431/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
   liquibase:
     change-log: classpath:liquibase/db.changelog.yaml
     enabled: true
 
-
 security:
   jwt:
-    secret: cnczclEzUnEzclEzUnFyUVJHU0RHWkdaR0ZHRkdGREdnZGdzZ2FlZ2FlZ2FlZ2ZkZ2FnZWRmZ2RqeXVreXVreXVreXVr
-    access: 6000000
-    refresh: 1296000000
+    secret: ${JWT_SECRET}
+    access: ${JWT_ACCESS}
+    refresh: ${JWT_REFRESH}
 
-# replace with duration values
