@@ -2,6 +2,7 @@ package isthatkirill.hwfoursecurity.error.handler;
 
 import isthatkirill.hwfoursecurity.error.exception.AccessDeniedException;
 import isthatkirill.hwfoursecurity.error.exception.EntityNotFoundException;
+import isthatkirill.hwfoursecurity.error.exception.UserNotUniqueException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,13 @@ public class ErrorHandlerController {
     public ErrorResponse entityNotFoundHandle(final EntityNotFoundException e) {
         log.error("Error: {} Description: {}", HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage());
         return new ErrorResponse(HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse userNotUniqueHandle(final UserNotUniqueException e) {
+        log.error("Error: {} Description: {}", HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
     }
 
     @ExceptionHandler
