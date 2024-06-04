@@ -3,6 +3,7 @@ package isthatkirill.hwfoursecurity.security.service;
 import isthatkirill.hwfoursecurity.error.exception.EntityNotFoundException;
 import isthatkirill.hwfoursecurity.model.User;
 import isthatkirill.hwfoursecurity.repository.UserRepository;
+import isthatkirill.hwfoursecurity.security.model.JwtUserFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,7 +23,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        User user = checkIfUserExistsAndGet(username);
+        return JwtUserFactory.create(user);
     }
 
     private User checkIfUserExistsAndGet(String username) {

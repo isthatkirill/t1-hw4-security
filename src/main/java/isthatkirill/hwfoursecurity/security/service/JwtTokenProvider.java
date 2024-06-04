@@ -3,6 +3,7 @@ package isthatkirill.hwfoursecurity.security.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import isthatkirill.hwfoursecurity.error.exception.AccessDeniedException;
 import isthatkirill.hwfoursecurity.error.exception.EntityNotFoundException;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.security.Key;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -40,7 +42,7 @@ public class JwtTokenProvider {
 
     @PostConstruct
     public void initKey() {
-        this.key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
+        this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtProperties.getSecret()));
     }
 
     public String createAccessToken(Long userId, String username, Set<Role> roles) {
@@ -105,6 +107,8 @@ public class JwtTokenProvider {
     }
 
     private Jws<Claims> claims(String token) {
+
+        // TODO FIX ERROR WITH KEY
         return Jwts.parser()
                 .verifyWith(key)
                 .build()
@@ -114,7 +118,7 @@ public class JwtTokenProvider {
     private List<String> buildStringList(Set<Role> roles) {
         return roles.stream()
                 .map(Enum::name)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private User checkIfUserExistsAndGet(Long id) {
