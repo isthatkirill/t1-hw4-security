@@ -21,11 +21,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author Kirill Emelyanov
@@ -107,8 +105,6 @@ public class JwtTokenProvider {
     }
 
     private Jws<Claims> claims(String token) {
-
-        // TODO FIX ERROR WITH KEY
         return Jwts.parser()
                 .verifyWith(key)
                 .build()

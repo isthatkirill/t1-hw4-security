@@ -29,14 +29,14 @@ public class ErrorHandlerController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse entityNotFoundHandle(final EntityNotFoundException e) {
-        log.error("Error: {} Description: {}", HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage());
+        log.error("Error: [{}] Description: [{}]", HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage());
         return new ErrorResponse(HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse userNotUniqueHandle(final UserNotUniqueException e) {
-        log.error("Error: {} Description: {}", HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
+        log.error("Error: [{}] Description: [{}]", HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
         return new ErrorResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
     }
 
@@ -48,7 +48,7 @@ public class ErrorHandlerController {
                 .map(error -> String.format("Field: [%s] error: [%s], value: [%s]",
                         error.getField(), error.getDefaultMessage(), error.getRejectedValue()))
                 .collect(Collectors.joining("\n"));
-        log.error("Error: {} Description: {}", HttpStatus.BAD_REQUEST.getReasonPhrase(), errorMessage);
+        log.error("Error: [{}] Description: [{}]", HttpStatus.BAD_REQUEST.getReasonPhrase(), errorMessage);
         return new ErrorResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), errorMessage);
     }
 
@@ -60,28 +60,28 @@ public class ErrorHandlerController {
                 .map(violation -> String.format("Field: [%s], error: [%s], value: [%s]",
                         violation.getPropertyPath().toString(), violation.getMessage(), violation.getInvalidValue()))
                 .collect(Collectors.joining("\n"));
-        log.error("Error: {} Description: {}", HttpStatus.BAD_REQUEST.getReasonPhrase(), errorMessage);
+        log.error("Error: [{}] Description: [{}]", HttpStatus.BAD_REQUEST.getReasonPhrase(), errorMessage);
         return new ErrorResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), errorMessage);
     }
 
     @ExceptionHandler({AccessDeniedException.class, org.springframework.security.access.AccessDeniedException.class})
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ErrorResponse accessDeniedHandle(final Exception e) {
-        log.error("Error: {} Description: {}", HttpStatus.FORBIDDEN.getReasonPhrase(), e.getMessage());
+        log.error("Error: [{}] Description: [{}]", HttpStatus.FORBIDDEN.getReasonPhrase(), e.getMessage());
         return new ErrorResponse(HttpStatus.FORBIDDEN.getReasonPhrase(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse authErrorHandle(final AuthenticationException e) {
-        log.error("Error: {} Description: {}", HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
+        log.error("Error: [{}] Description: [{}]", HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
         return new ErrorResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse unexpectedErrorHandle(final Exception e) {
-        log.error("Error: {} Description: {}", HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e.getMessage(), e);
+        log.error("Error: [{}] Description: [{}]", HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e.getMessage(), e);
         return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e.getMessage());
     }
 

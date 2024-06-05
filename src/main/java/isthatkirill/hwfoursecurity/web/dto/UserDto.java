@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
