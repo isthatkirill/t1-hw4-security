@@ -285,7 +285,7 @@
 							"script": {
 								"exec": [
 									"const body = pm.response.json()\r",
-									"pm.collectionVariables.set(\"jwt_user\", body.accessToken);"
+									"pm.collectionVariables.set(\"jwt_user_access\", body.accessToken);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -297,10 +297,10 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{{jwt_user_refresh}}",
+							"raw": "{\r\n    \"token\": \"{{jwt_user_refresh}}\"\r\n}",
 							"options": {
 								"raw": {
-									"language": "text"
+									"language": "json"
 								}
 							}
 						},
