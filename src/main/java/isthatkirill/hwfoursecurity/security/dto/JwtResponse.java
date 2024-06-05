@@ -8,8 +8,7 @@ import lombok.experimental.FieldDefaults;
  * @author Kirill Emelyanov
  */
 
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

@@ -31,7 +31,6 @@ public class AuthController {
     private final AuthService authService;
     private final UserService userService;
 
-
     @PostMapping("/login")
     @Operation(summary = "Login")
     public JwtResponse login(@Valid @RequestBody JwtRequest jwtRequest) {

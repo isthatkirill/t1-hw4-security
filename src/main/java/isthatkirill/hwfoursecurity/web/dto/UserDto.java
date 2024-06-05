@@ -13,9 +13,8 @@ import org.hibernate.validator.constraints.Length;
  * @author Kirill Emelyanov
  */
 
-@Getter
-@Setter
-@ToString
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "User DTO")

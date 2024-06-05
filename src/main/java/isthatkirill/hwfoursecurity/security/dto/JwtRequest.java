@@ -10,8 +10,7 @@ import org.hibernate.validator.constraints.Length;
  * @author Kirill Emelyanov
  */
 
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
